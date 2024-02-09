@@ -5,10 +5,6 @@ static const StorageAccess wp_storage(StorageManager::StorageMission);
 
 void Tracker::init_ardupilot()
 {
-#if HAL_MAX_CAN_PROTOCOL_DRIVERS
-    can_mgr.init();
-#endif
-
     // initialise notify
     notify.init();
     AP_Notify::flags.pre_arm_check = true;
@@ -31,10 +27,6 @@ void Tracker::init_ardupilot()
 #if HAL_LOGGING_ENABLED
     log_init();
 #endif
-
-#if AP_SCRIPTING_ENABLED
-    scripting.init();
-#endif // AP_SCRIPTING_ENABLED
 
     // initialise compass
     AP::compass().set_log_bit(MASK_LOG_COMPASS);
