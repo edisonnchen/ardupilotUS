@@ -123,10 +123,12 @@ bool AP_InertialSensor_BMI088::read_accel_registers(uint8_t reg, uint8_t *data, 
 {
     // when on I2C we just read normally
     if (dev_accel->bus_type() != AP_HAL::Device::BUS_TYPE_SPI) {
+
         return dev_accel->read_registers(reg, data, len);
     }
     // for SPI we need to discard the first returned byte. See
     // datasheet for explanation
+
     uint8_t b[len+2];
     b[0] = reg | 0x80;
     memset(&b[1], 0, len+1);
@@ -171,6 +173,7 @@ static const struct {
 
 bool AP_InertialSensor_BMI088::setup_accel_config(void)
 {
+
     if (done_accel_config) {
         return true;
     }
@@ -197,9 +200,12 @@ bool AP_InertialSensor_BMI088::setup_accel_config(void)
  */
 bool AP_InertialSensor_BMI088::accel_init()
 {
+
+
     WITH_SEMAPHORE(dev_accel->get_semaphore());
 
     uint8_t v;
+
 
     // dummy ready on accel ChipID to init accel (see section 3 of datasheet)
     read_accel_registers(REGA_CHIPID, &v, 1);
@@ -237,6 +243,7 @@ bool AP_InertialSensor_BMI088::accel_init()
  */
 bool AP_InertialSensor_BMI088::gyro_init()
 {
+
     WITH_SEMAPHORE(dev_gyro->get_semaphore());
 
     uint8_t v;
@@ -285,6 +292,7 @@ bool AP_InertialSensor_BMI088::gyro_init()
 
 bool AP_InertialSensor_BMI088::init()
 {
+
     dev_accel->set_read_flag(0x80);
     dev_gyro->set_read_flag(0x80);
 
@@ -296,6 +304,7 @@ bool AP_InertialSensor_BMI088::init()
  */
 void AP_InertialSensor_BMI088::read_fifo_accel(void)
 {
+
     if (!setup_accel_config()) {
         return;
     }
