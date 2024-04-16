@@ -126,10 +126,12 @@ bool AP_InertialSensor_BMI088::read_accel_registers(uint8_t reg, uint8_t *data, 
     // when on I2C we just read normally
     if (dev_accel->bus_type() != AP_HAL::Device::BUS_TYPE_SPI)
     {
+        GCS_SEND_TEXT(MAV_SEVERITY_INFO, "Reading Accel using I2C...");
         return dev_accel->read_registers(reg, data, len);
     }
     // for SPI we need to discard the first returned byte. See
     // datasheet for explanation
+    GCS_SEND_TEXT(MAV_SEVERITY_INFO, "Reading Accel using SPI...");
     uint8_t b[len + 2];
     b[0] = reg | 0x80;
     memset(&b[1], 0, len + 1);
