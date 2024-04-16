@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <AP_Common/time.h>
 
-#include <ff.h>
+#include "../../modules/ChibiOS/ext/fatfs/source/ff.h"
 #include <AP_HAL_ChibiOS/sdcard.h>
 #include <GCS_MAVLink/GCS.h>
 #include <AP_HAL_ChibiOS/hwdef/common/stm32_util.h>
