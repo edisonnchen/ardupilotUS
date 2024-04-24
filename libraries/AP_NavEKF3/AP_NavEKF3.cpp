@@ -127,7 +127,17 @@
 
 // This allows boards to default to using a specified number of IMUs and EKF lanes
 #ifndef HAL_EKF_IMU_MASK_DEFAULT
-#define HAL_EKF_IMU_MASK_DEFAULT 3       // Default to using two IMUs
+#define HAL_EKF_IMU_MASK_DEFAULT 7       // 3 IMUs
+#endif
+
+// This allows boards to default to using a specified number of Barometers and EKF lanes
+#ifndef HAL_EKF_BARO_MASK_DEFAULT
+#define HAL_EKF_BARO_MASK_DEFAULT 7       // 3 Baro
+#endif
+
+// This allows boards to default to using a specified number of Magnetometers and EKF lanes
+#ifndef HAL_EKF_MAG_MASK_DEFAULT
+#define HAL_EKF_MAG_MASK_DEFAULT 7       // 3 Compass
 #endif
 
 // Define tuning parameters
